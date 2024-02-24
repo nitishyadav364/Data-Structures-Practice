@@ -16,38 +16,41 @@ void printArray(int arr[], int size)
 class Solution
 {
     public:
-    //Function to sort an array using quick sort algorithm.
         int partition (int arr[], int low, int high)
     {
-       int count=0;
-       for(int i=low+1;i<=high;i++){
-           if(arr[i]<=arr[low]){
-               count++;
-           }
-       }
-       int pivot=low+count;
-       swap(arr[low],arr[pivot]);
-       int i=low;
-       int j=high;
-       while(i<pivot&&j>pivot){
-           while(arr[i]<=arr[pivot]){
-               i++;
-           }
-           while(arr[j]>arr[pivot]){
-              j--;
-           }
-           if(i<pivot&&j>pivot){
-               swap(arr[i++],arr[j--]);
-           }
-       }
-       return pivot;
+      int pivot = arr[low];
+    int count = 0;
+    int i = low + 1;
+    while (i <= high) {
+        if (arr[i] <= pivot) {
+            count++;
+        }
+        i++;
+    }
+    pivot = low + count;
+    swap(arr[low], arr[pivot]); // Swap pivot with its original position
+    int j = pivot + 1;
+    i = low;
+    while (i <= pivot-1 && j <= high) {
+        if (arr[i] > arr[pivot] && arr[j] <= arr[pivot]) {
+            swap(arr[i], arr[j]);
+            i++;
+            j++;
+        } else if (arr[i] <= arr[pivot]) { // Corrected this condition
+            i++;
+        } else {
+            j++;
+        }
+    }
+    return pivot;
     }
     void quickSort(int arr[], int low, int high)
     {
-        if(low>=high) return;
-        int p=partition(arr,low,high);
-        quickSort(arr,low,p-1);
-        quickSort(arr,p+1,high);
+       if(low>=high) return;
+       int pivot=partition(arr,low,high);
+       quickSort(arr,low,pivot-1);
+       quickSort(arr,pivot+1,high);
+       
     }
 };
 
