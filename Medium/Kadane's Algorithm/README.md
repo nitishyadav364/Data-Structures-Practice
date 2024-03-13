@@ -1,4 +1,4 @@
-<h2><a href="https://www.geeksforgeeks.org/problems/kadanes-algorithm-1587115620/1">Kadane's Algorithm</a></h2><h3>Difficulty Level : Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given an array <strong>Arr[]&nbsp;</strong>of <strong>N</strong> integers. Find the contiguous sub-array(containing at least one number) which has the&nbsp;maximum sum and return its sum.</span></p>
+<h2><a href="https://www.geeksforgeeks.org/problems/kadanes-algorithm-1587115620/1?page=1&sortBy=submissions">Kadane's Algorithm</a></h2><h3>Difficulty Level : Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given an array <strong>Arr[]&nbsp;</strong>of <strong>N</strong> integers. Find the contiguous sub-array(containing at least one number) which has the&nbsp;maximum sum and return its sum.</span></p>
 
 <p><br>
 <span style="font-size:18px"><strong>Example 1:</strong></span></p>
