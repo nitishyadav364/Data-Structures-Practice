@@ -1,4 +1,4 @@
-<h2><a href="https://www.geeksforgeeks.org/problems/longest-repeating-subsequence2004/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article">Longest Repeating Subsequence</a></h2><h3>Difficulty Level : Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given string str, find the length of the longest repeating subsequence such that it can be found twice in the given string. </span></p>
+<h2><a href="https://www.geeksforgeeks.org/problems/longest-repeating-subsequence2004/1">Longest Repeating Subsequence</a></h2><h3>Difficulty Level : Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given string str, find the length of the longest repeating subsequence such that it can be found twice in the given string. </span></p>
 
 <p><span style="font-size:18px">The two identified subsequences A and B can use the same ith character from string str if and only if that ith character has different indices in A and B. For example, A = "xax" and B = "xax" then the index of first "x" must be different in the original string for A and B.</span></p>
 
