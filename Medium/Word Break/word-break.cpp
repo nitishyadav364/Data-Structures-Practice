@@ -8,44 +8,45 @@ using namespace std;
 // } Driver Code Ends
 //User function template for C++
 
-// A : given string to search
-// B : vector of available strings
+// s : given string to search
+// dictionary : vector of available strings
 
 class Solution
 {
 public:
-    bool search(string A,int i,string word){
-        for(int x=0;x<word.length();x++){
-            if(i<A.length()){
-                if(A[i]!=word[x]){
-                    return false;
-                }
+    bool check(int i,string string1,string string2){
+        int j=0;
+        while(j<string2.length()&&i<string1.length()){
+            if(string1[i]!=string2[j]){
+                return false;
+                
             }
             else{
-                return false;
-            }
-            i++;
-        }
-        return true;
-    }
-    void solve(int i,string A,vector<string>&B,int &ans){
-        if(i==A.length()){
-            ans=1;
-            return;
-        }
-        for(int x=0;x<B.size();x++){
-            if(A[i]==B[x][0]){
-                bool temp=search(A,i,B[x]);
-                if(temp){
-                    solve(i+B[x].length(),A,B,ans);
-                }
+                i++;
+                j++;
             }
         }
+        if(j==string2.length()){
+            return true;
+        }
+        return false;
     }
-    int wordBreak(string A, vector<string> &B) {
-        int ans=0;
-        solve(0,A,B,ans);
+    bool solve(int i,string s,int n,vector<string>&dictionary){
+        if(i==s.length()){
+            return true;
+        }
+        bool ans=false;
+        for(int j=0;j<dictionary.size();j++){
+            if(s[i]==dictionary[j][0]){
+                bool temp=check(i,s,dictionary[j]);
+                if(temp) ans|=solve(i+dictionary[j].length(),s,n,dictionary);
+            }
+        }
         return ans;
+    }
+    int wordBreak(int n, string s, vector<string> &dictionary) {
+            return solve(0,s,n,dictionary);
+             
     }
 };
 
@@ -57,16 +58,16 @@ int main(){
     while(t--){
         int n;
         cin>>n;
-        vector<string> dict;
+        vector<string> dictionary;
         for(int i=0;i<n;i++){
             string S;
             cin>>S;
-            dict.push_back(S);
+            dictionary.push_back(S);
         }
-        string line;
-        cin>>line;
+        string s;
+        cin>>s;
         Solution ob;
-        cout<<ob.wordBreak(line, dict)<<"\n";
+        cout<<ob.wordBreak(n, s, dictionary)<<"\n";
     }
 }
 
