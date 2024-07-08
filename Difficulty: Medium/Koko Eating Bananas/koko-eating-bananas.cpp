@@ -5,44 +5,28 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-     int findCount(vector<int>s,int r)
-  {
-      int h = 0;
-    //   vector<int>s=k;
-      for(int i=0;i<s.size();i++)
-      {
-          h += ceil((double)s[i]/(double)r);
-      }
-      return h;
-  }
-    int Solve(int N, vector<int>& piles, int H) {
+     int Solve(int N, vector<int>& piles, int H) {
         // Code here
-        int Mx=*max_element(piles.begin(),piles.end());
-        int mn = Mx;
-        if(H <= piles.size() )
-        {
-            return Mx;
-        }
-        else
-        {
-            int s = 1;
-            int l=Mx;
-            int mid = s + (l-s)/2;
-            while(s <= l){
-                int ans=findCount(piles,mid);
-                if(ans <= H) {
-                    mn = min(mn,mid);
-                        l= mid-1;
-                    
-                }
-                else 
-                { 
-                    s = mid+1;  
-                }
-                mid = s + (l-s)/2;
+        int s=0;
+        int e=1e9;
+        int mid=0;
+        while(s<=e){
+            mid = (s+e)/2;
+            int hourtaken=0;
+            for(int i=0;i<N;i++){
+                double pile =(double)piles[i];
+                double m = (double)mid;
+                hourtaken+= ceil(pile/m);
             }
-            return mn;
+            if(hourtaken>H){
+                s=mid+1;
+            }
+            else{
+                e=mid-1;
+            }
+
         }
+        return s;
     }
 };
 
