@@ -108,38 +108,15 @@ bool compare(Node* prev, Node* new_node, unordered_set<Node*>& prev_vis, unorder
 
 class Solution {
 public:
+   unordered_map<Node*,Node*> mp;
     Node* cloneGraph(Node* node) {
-        if (!node) return nullptr;
-
-    // Map to store the original node and its corresponding cloned node
-    unordered_map<Node*, Node*> visited;
-
-    // Create a new node for the given node
-    Node* newNode = new Node(node->val);
-    visited[node] = newNode;
-
-    // Queue for BFS
-    queue<Node*> que;
-    que.push(node);
-
-    while (!que.empty()) {
-        Node* current = que.front();
-        que.pop();
-
-        // Iterate over all the neighbors of the current node
-        for (auto neighbor : current->neighbors) {
-            if (visited.find(neighbor) == visited.end()) {
-                // If the neighbor hasn't been visited, create a new node and mark it as visited
-                Node* newNeighbor = new Node(neighbor->val);
-                visited[neighbor] = newNeighbor;
-                que.push(neighbor);
-            }
-            // Add the cloned neighbor to the current cloned node's neighbors
-            visited[current]->neighbors.push_back(visited[neighbor]);
-        }
-    }
-
-    return newNode;
+     Node* clone = new Node(node->val);
+     mp[node] = clone;
+     for(auto it : node->neighbors) {
+        if(mp[it]) clone->neighbors.push_back(mp[it]);
+        else clone->neighbors.push_back(cloneGraph(it));
+     }
+     return clone;
 }
 };
 
