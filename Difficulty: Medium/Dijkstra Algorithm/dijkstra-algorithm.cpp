@@ -8,23 +8,25 @@ class Solution
 	public:
 	//Function to find the shortest distance of all the vertices
     //from the source vertex S.
-    vector <int> dijkstra(int V, vector<vector<int>> adj[], int s)
+    vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
     {
-        vector<int>distance(V,INT_MAX);
-        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
-        pq.push({0,s});
-        distance[s]=0;
-        while(!pq.empty()){
-            pair<int,int>temp=pq.top();
-            pq.pop();
-            for(auto it:adj[temp.second]){
-            if(distance[it[0]]>it[1]+temp.first){
-                distance[it[0]]=it[1]+temp.first;
-                pq.push({ distance[it[0]],it[0]});
-            }
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> min_heap;
+        min_heap.push({0,S});
+        vector<int> dis(V,INT_MAX);
+        dis[S]=0;
+        while(!min_heap.empty()){
+            pair<int,int> temp=min_heap.top();
+            min_heap.pop();
+            int dist=temp.first;
+            int vertex=temp.second;
+            for(auto it:adj[vertex]){
+                if(it[1]+dist<dis[it[0]]){
+                    dis[it[0]]=it[1]+dist;
+                    min_heap.push({ dis[it[0]],it[0]});
+                }
             }
         }
-        return distance;
+        return dis;
     }
 };
 
